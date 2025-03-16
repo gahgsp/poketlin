@@ -22,7 +22,8 @@ class TeamAnalysisService(private val pokemonAPI: PokemonAPI) {
                     acc * (TYPE_EFFECTIVENESS[attackingType]?.get(defenderType) ?: 1.0)
                 }
             }.average() // We calculate the average vulnerability for this Team.
-        }.filter { it.value > 1.0 }.toSortedMap() // We only want the Types where our Team is weak agains.
+        }.filter { it.value > 1.0 } // We only want the Types where our Team is weak against.
+            .entries.sortedWith(compareByDescending { it.value }).associate { it.key to it.value }
     }
 
     fun analyzeTeamStats(team: Team): Map<String, Double> {
