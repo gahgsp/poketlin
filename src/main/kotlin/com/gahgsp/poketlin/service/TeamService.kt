@@ -4,6 +4,7 @@ import com.gahgsp.poketlin.model.Team
 import com.gahgsp.poketlin.repository.TeamRepository
 import com.gahgsp.poketlin.repository.UserRepository
 import jakarta.transaction.Transactional
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
@@ -22,5 +23,10 @@ class TeamService(private val teamRepository: TeamRepository,
         )
 
         return teamRepository.save(team)
+    }
+
+    @Transactional
+    fun getTeamById(id: Long): Team? {
+        return teamRepository.findByIdOrNull(id)
     }
 }

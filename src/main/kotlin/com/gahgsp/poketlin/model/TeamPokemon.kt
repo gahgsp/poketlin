@@ -13,7 +13,7 @@ data class TeamPokemon(
     @Column(nullable = false)
     val pokemonId: Int, // External PokéAPI ID
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     val nickname: String? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
