@@ -21,5 +21,6 @@ data class TeamResponseDTO(
     val description: String?,
     val pokemonCount: Int,
     val createdAt: LocalDateTime,
-    val updatedAt: LocalDateTime
+    val updatedAt: LocalDateTime,
+    val pokemons: List<String>? = listOf()
 )
