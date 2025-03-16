@@ -25,6 +25,16 @@ class TeamAnalysisService(private val pokemonAPI: PokemonAPI) {
         }.filter { it.value > 1.0 }.toSortedMap() // We only want the Types where our Team is weak agains.
     }
 
+    fun analyzeTeamStats(team: Team): Map<String, Double> {
+        val pokemonList = team.getPokemonDetails()
+
+        return STAT_NAMES.associateWith { statName ->
+            pokemonList.map { pokemon ->
+                pokemon.stats.find { it.stat.name == statName }?.baseStat ?: 0
+            }.average()
+        }
+    }
+
     // Allows the definition of class-level functions and properties.
     // Good for holding constants and shared utilities.
     companion object {
@@ -173,6 +183,13 @@ class TeamAnalysisService(private val pokemonAPI: PokemonAPI) {
             "normal", "fire", "water", "electric", "grass", "ice",
             "fighting", "poison", "ground", "flying", "psychic", "bug",
             "rock", "ghost", "dragon", "dark", "steel", "fairy"
+        )
+
+        /**
+         * Defines a list of all the basic stats for a given Pokémon.
+         */
+        val STAT_NAMES = listOf(
+            "hp", "attack", "defense", "special-attack", "special-defense", "speed"
         )
     }
 }

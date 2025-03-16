@@ -14,9 +14,17 @@ class TeamAnalysisController(
     private val teamService: TeamService,
     private val teamAnalysisService: TeamAnalysisService
 ) {
+    // TODO: Handle the case where a Team is not found.
+
     @GetMapping("/weaknesses")
     fun getTeamWeaknesses(@PathVariable teamId: Long): ResponseEntity<Map<String, Double>> {
         val team = teamService.getTeamById(teamId)
         return ResponseEntity.ok(teamAnalysisService.analyzeTeamWeaknesses(team!!))
+    }
+
+    @GetMapping("/stats")
+    fun getTeamStats(@PathVariable teamId: Long): ResponseEntity<Map<String, Double>> {
+        val team = teamService.getTeamById(teamId)
+        return ResponseEntity.ok(teamAnalysisService.analyzeTeamStats(team!!))
     }
 }
