@@ -36,6 +36,13 @@ class TeamAnalysisService(private val pokemonAPI: PokemonAPI) {
         }
     }
 
+    fun analyzeTypeDiversity(team: Team): Map<String, Int> {
+        return team.getPokemonDetails()
+            .flatMap { pokemon -> pokemon.types.map { it.type.name } }
+            .groupingBy { it }
+            .eachCount()
+    }
+
     // Allows the definition of class-level functions and properties.
     // Good for holding constants and shared utilities.
     companion object {

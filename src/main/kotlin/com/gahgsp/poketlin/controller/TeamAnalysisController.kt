@@ -27,4 +27,10 @@ class TeamAnalysisController(
         val team = teamService.getTeamById(teamId)
         return ResponseEntity.ok(teamAnalysisService.analyzeTeamStats(team!!))
     }
+
+    @GetMapping("/diversity")
+    fun getTypeDiversity(@PathVariable teamId: Long): ResponseEntity<Map<String, Int>> {
+        val team = teamService.getTeamById(teamId)
+        return ResponseEntity.ok(teamAnalysisService.analyzeTypeDiversity(team!!))
+    }
 }
