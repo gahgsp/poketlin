@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service
 class TeamService(private val teamRepository: TeamRepository,
                   private val userRepository: UserRepository
 ) {
+
     @Transactional
     fun createTeam(username: String, name: String, description: String?): Team {
         val user = userRepository.findByUsername(username)

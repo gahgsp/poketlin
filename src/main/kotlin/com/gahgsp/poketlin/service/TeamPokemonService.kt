@@ -13,6 +13,7 @@ class TeamPokemonService(
     private val teamPokemonRepository: TeamPokemonRepository,
     private val teamService: TeamService
 ) {
+
     @Transactional
     fun addPokemonToTeam(pokemonId: Int, teamId: Long): TeamPokemon {
         // TODO: Add check to avoid "null"! Throw an error!
