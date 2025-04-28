@@ -2,7 +2,6 @@ package com.gahgsp.poketlin.model
 
 import jakarta.persistence.*
 
-
 @Entity
 @Table(name = "team_pokemon")
 data class TeamPokemon(

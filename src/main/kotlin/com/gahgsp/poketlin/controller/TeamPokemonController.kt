@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/teams/pokemon")
 class TeamPokemonController(private val teamPokemonService: TeamPokemonService) {
+
     @PostMapping("/add")
     fun addPokemonToTeam(@Valid @RequestBody body: TeamPokemonCreateDTO): ResponseEntity<TeamPokemonResponseDTO> {
         val addedPokemon = teamPokemonService.addPokemonToTeam(pokemonId = body.pokemonId, teamId = body.teamId)
